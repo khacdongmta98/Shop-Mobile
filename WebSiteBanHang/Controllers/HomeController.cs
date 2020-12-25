@@ -115,6 +115,7 @@ namespace WebSiteBanHang.Controllers
             string matkhau = f["txtMatKhau"].ToString();
 
             ThanhVien tv = db.ThanhViens.SingleOrDefault(n=>n.TaiKhoan==taikhoan && n.MatKhau==matkhau);
+            tv.MaLoaiTV = 2;
             if (tv != null)
             {
                 //Láy ra List quyền của thành viên tương ứng với loại thành viên
