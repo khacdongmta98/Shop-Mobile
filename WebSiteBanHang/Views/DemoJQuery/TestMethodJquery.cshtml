@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "TestMethodJquery";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h2>TestMethodJquery</h2>
+<input type="text" class="test" data-giatri="abcdef" />
+<div class="abc">
+    <input type="text" class="test" data-giatri="-1" data-abc="dang duc nghia" />
+    <input type="button" value="Xuất thông báo" id="btnXuatThongBao" />
+</div>
+
+
+@*Demo phương thức each*@
+
+@*<div class="contentt">abc 1</div>
+<div class="contentt">xyz 2</div>
+<div class="contentt">xyz 3</div>
+<div class="contentt">xyz 4</div>
+<div class="contentt">xyz 5</div>
+<input type="button" value="Xuất thông báo" id="btnXuatThongBao" />*@
+<script>
+    // Cách 1:
+    $("#btnXuatThongBao").click(function () {
+        //var noidung = $(".test").attr("data-giatri");
+        var noidung = $(".abc").find(".test").attr("data-giatri");
+        i = parseInt(noidung) + 1;
+        alert(i);
+        //$(".abc").prepend("<input />")
+    });
+    // cách 2:
+    //$("body").delegate("#btnXuatThongBao", "click", function () {
+    //    var noidung = $(".test").val();
+    //    alert(noidung);
+    //});
+    ////Cách 3:
+    //$("").on("click", "#btnXuatThongBao", function () {
+    //    var noidung = $(".test").val();
+    //    alert(noidung);
+    //});
+
+    //$("#btnXuatThongBao").click(function () {
+    //    $(".contentt").each(function () {
+    //        var noidung = $(this).text(); // this giong item trong foreach
+    //        alert(noidung);
+    //    });
+    //});
+</script>
