@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Demo";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+<h1>Danh sách Logo</h1>
+<div id="content">
+    @*Su dung Bootstrap*@
+    <div class="row">
+        <div class="col-md-2">
+            <div class="logo-demo">
+                <span class="title-demo">Home</span>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            <div class="logo-demo">
+                <span class="title-demo">Home</span>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            <div class="logo-demo">
+                <span class="title-demo">Home</span>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            <div class="logo-demo">
+                <span class="title-demo">Home</span>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            <div class="logo-demo">
+                <span class="title-demo">Home</span>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            <div class="logo-demo">
+                <span class="title-demo">Home</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    #content{
+        height:500px;
+    }
+    .title-demo{
+        font-size:15pt;
+        font-weight:bold;
+        color:white;
+    }
+    .logo-demo{
+        height:100px;
+        background-color:green;
+        background-image:url("../Content/images/home.ico");
+        background-size: 50px;
+        background-repeat:no-repeat;
+        background-position: center right;
+        padding-top: 35px;
+        padding-left:10px;
+        transition:0.5s;
+    }
+    .logo-demo:hover{
+        height:100px;
+        background-color:green;
+        background-image:url("../Content/images/home.ico");
+        background-size: 50px;
+        background-repeat:no-repeat;
+        background-position: 10px 35px; 
+        padding-top: 0;
+        padding-left:10px;
+        transition: 0.5s;
+    }
+</style>
+

@@ -1,0 +1,23 @@
+﻿@using WebSiteBanHang.Models;
+@model PhieuNhap
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h2>Demo Phiếu Nhập</h2>
+
+@using (Html.BeginForm())
+{
+    <label>Mã phiếu nhập</label><input name="MaPN"/>
+    <label>Mã nhà cung cấp</label><input name="MaNCC" />
+    for (int i = 0; i < 10; i++)
+    {
+        <h2>Thông tin sản phẩm</h2>
+
+        <input name="@Url.Content("[" +i+ "].MaSP")" value="@i"/><br />
+        <input name="@Url.Content("[" +i+ "].DonGiaNhap")" value="10000" /><br />
+        <input name="@Url.Content("[" +i+ "].SoLuongNhap")" value="100" /><br />
+    }
+    <input type="submit" value="Đồng ý"/>
+}

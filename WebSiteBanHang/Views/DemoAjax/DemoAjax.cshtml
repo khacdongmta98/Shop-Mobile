@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "DemoAjax";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<h2>DemoAjax</h2>
+@*Cách 1: Dùng ActionLink*@
+@*@Ajax.ActionLink("Load Ajax MVC","LoadAjaxActionLink",new AjaxOptions { HttpMethod="GET",UpdateTargetId="KetQua",InsertionMode=InsertionMode.Replace,LoadingElementId="loading"})*@
+
+
+@*Cách 2: Dùng Ajax.BeginForm*@
+@*@using (Ajax.BeginForm("LoadAjaxBeginForm", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "KetQua", InsertionMode = InsertionMode.Replace }))
+    {
+        <input name="txt1" />
+        <input type="submit" value="Submit" />
+    }*@
+@*<input name="txt1" id="txt1"/>
+    <input name="txt2" id="txt2"/>
+    <input type="button" id="button" value="Submit JQuery Ajax"/>
+
+    <div id="loading" style="height:10px;display:none">
+        <img src="~/content/images/19.gif" />
+    </div>
+
+    <div id="KetQua" style="height:150px;">
+        Day la ket qua tra ve
+        <br />
+    </div>
+    @*Cách 3: Sử dụng JQuery để load AJax*@
+@*<script>
+        $("#button").click(function () {
+            $('#loading').show();
+            var thamso1 = $('#txt1').val();
+            var thamso2 = $('#txt2').val();
+            $.ajax({
+                type: 'GET',
+                data: { a: thamso1, b: thamso2 },
+                url: '@Url.Content("LoadAjaxJQuery")',
+                success: function (ketqua) {
+                    $('#loading').hide();
+                    $('#KetQua').html(ketqua);
+                }
+            })
+        })
+    </script>*@
+
+@Ajax.ActionLink("Danh sách sản phẩm", "LoadSanPham", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "KetQua", InsertionMode = InsertionMode.Replace, LoadingElementId = "loading" })
+<div class="container">
+    <div class="content-top">
+        <div id="KetQua" style="height:150px">
+            Hien Thi San Pham o day
+            <br />
+        </div>
+    </div>
+</div>
+<div id="loading" style="height:10px;display:none">
+    <img src="~/Content/images/19.gif" />
+</div>
