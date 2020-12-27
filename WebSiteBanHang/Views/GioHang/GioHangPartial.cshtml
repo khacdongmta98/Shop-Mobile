@@ -3,7 +3,7 @@
 
 <div id="divGioHang" class="cart box_1">
     <a href="@Url.Action("XemGioHang","GioHang")">
-        <div class="total">
+        <div class="total" id="tongtien">
             @ViewBag.TongTien.ToString("#,##") VNĐ (<span>@ViewBag.TongSoLuong</span> sp)
         </div>
         <img src="~/Content/images/cart.png" alt="" />

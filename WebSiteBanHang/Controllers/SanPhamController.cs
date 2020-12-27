@@ -25,14 +25,11 @@ namespace WebSiteBanHang.Controllers
         }
 
         //Xây dựng trang xem chi tiết
-        public ActionResult XemChiTiet(int? id, string tensp)
+        public ActionResult XemChiTiet(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             //Nếu không thì truy xuất csdl lấy ra sản phẩm tương ứng id
-            SanPham sp = db.SanPhams.SingleOrDefault(n => n.MaSP == id && n.DaXoa == false);
+            SanPham sp = db.SanPhams.Single(n => n.MaSP == id);
             if (sp == null)
             {
                 return HttpNotFound();

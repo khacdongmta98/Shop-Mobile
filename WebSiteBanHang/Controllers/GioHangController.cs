@@ -255,6 +255,7 @@ namespace WebSiteBanHang.Controllers
 
 
         // Thêm giỏ hàng Ajax
+
         public ActionResult ThemGioHangAjax(int MaSP, string strURL)
         {
             // Kiểm tra trong csdl 
