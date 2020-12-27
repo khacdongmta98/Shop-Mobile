@@ -60,7 +60,7 @@ namespace WebSiteBanHang.Controllers
                 page = 1;
             }
             //Tạo biến số sp trên trang
-            int PageSize = 9;
+            int PageSize = 3;
             //Tạo biến thứ 2 : Số trang hiện tại
             int PageNumber = (page ?? 1);
             ViewBag.MaLoaiSP = MaLoaiSP;

@@ -61,7 +61,7 @@ namespace WebSiteBanHang.Controllers
             // Lấy ds chi tiết đơn hàng để hiển thị cho người dùng thấy
             var lstChiTietDH = db.ChiTietDonDatHangs.Where(n => n.MaDDH == ddh.MaDDH);
             ViewBag.ListChiTietDH = lstChiTietDH;
-            GuiEmail("Xác nhận đơn hàng", "khacdongmta98@gmail.com", "khacdongmtak52@gmail.com", "khacdong11031998", "Đơn hàng của bạn đã được đặt thành công");
+            GuiEmail("Xác nhận đơn hàng", "ducnghia1205@gmail.com", "kiembtcmp@gmail.com", "zewang.help", "Đơn hàng của bạn đã được đặt thành công");
             return View(ddhUpdate);
         }
 
@@ -70,7 +70,7 @@ namespace WebSiteBanHang.Controllers
             // goi email
             MailMessage mail = new MailMessage();
             mail.To.Add(ToEmail); // Địa chỉ nhận
-            mail.From = new MailAddress(FromEmail); // Địa chỉ gửi
+            mail.From = new MailAddress(ToEmail); // Địa chửi gửi
             mail.Subject = Title;  // tiêu đề gửi
             mail.Body = Content;                 // Nội dung
             mail.IsBodyHtml = true;
@@ -78,8 +78,8 @@ namespace WebSiteBanHang.Controllers
             smtp.Host = "smtp.gmail.com"; // host gửi của Gmail
             smtp.Port = 587;               //port của Gmail
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new System.Net.NetworkCredential(FromEmail,PassWord);
-            //(FromEmail, PassWord);//Tài khoản password người gửi
+            smtp.Credentials = new System.Net.NetworkCredential
+            (FromEmail, PassWord);//Tài khoản password người gửi
             smtp.EnableSsl = true;   //kích hoạt giao tiếp an toàn SSL
             smtp.Send(mail);   //Gửi mail đi
         }
