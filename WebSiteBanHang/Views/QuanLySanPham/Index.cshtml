@@ -1,57 +1,78 @@
 ﻿@using WebSiteBanHang.Models;
 @model IEnumerable<SanPham>
-@{
-    ViewBag.Title = "Index";
+@{ 
+    ViewBag.Title = "Quản lý sản phẩm";
     Layout = "~/Views/Layout/AdminLayout.cshtml";
-
-    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 5);
 }
 
-@*Thể hiện dữ liệu thông qua control WebGrid *@
-@grid.GetHtml(
-    tableStyle:"gridTable",
-    headerStyle:"gridHead",
-    footerStyle:"gridFooter",
-    rowStyle:"gridRow",
-    alternatingRowStyle:"gridAltRow",
-    columns: grid.Columns(
-    grid.Column("MaSP","Tên sản phẩm"),
-    grid.Column("TenSP","Tên SP"),
-    //grid.Column("MoTa","Mô tả",format:p=>Html.Raw(p.MoTa)),
-    grid.Column("HinhAnh", "Hình ảnh", format: p => Html.Raw("<img src=\"../Content/HinhAnhSP/" +p.HinhAnh + "\" style=\"height:100px;width:150px\">")),
-    grid.Column(format:p=>Html.ActionLink("Chỉnh sửa","ChinhSua",new { id=p.MaSP})),
-    grid.Column(format:p=>Html.ActionLink("Xóa","Xoa",new { id = p.MaSP}))
-    )
-)
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap.min.js"></script>
+<link rel="stylesheet" href="~/Content/Layouts/css/font-awesome.css">
 
 
+    <script>
+$(document).ready(function() {
+    $('#example').DataTable(
+        {
+            "autoWidth": true,
+            "language": {
+                "sProcessing": "Đang xử lý...",
+                "sLengthMenu": "Xem _MENU_ mục",
+                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
+                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                "sInfoPostFix": "",
+                "sSearch": "Tìm:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "Đầu",
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                    "sLast": "Cuối"
+                }
+            },
+            "processing": true, // tiền xử lý trước
+            "aLengthMenu": [[10, 15, 20, 50], [10, 15, 20, 50]], // danh sách số trang trên 1 lần hiển thị bảng
+            "order": [[0, 'asc']] //sắp xếp giảm dần theo cột thứ 1
+        });
+} );
+    </script>
 <style>
-    .gridHead {
-        
-        background-color:green
-    }
-    .gridHead > th > a{
-        color:white
-    }
-
-    /*.gridRow{
-        color:black;
-        background-color:blue
-    }*/
-
-    .gridAltRow{
-        border:1px solid black;
-    }
-
-    .gridFooter{
-        font-weight:bold
-    }
-    .gridTable{
-        width:100%;
-        border:1px solid black
-    }
-    .gridTable > th, td {
-        border: 1px solid orange;
-         text-align: center;
+    td,th{
+        text-align:center;
     }
 </style>
+
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr style="text-align:center">
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Công cụ</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+
+            <tr>
+                <td>@item.MaSP</td>
+                <td>@item.TenSP</td>
+                <td>
+                    <img src="~/Content/HinhAnhSP/@item.HinhAnh" />
+                </td>
+                <td>
+                    <a href="/QuanLySanPham/ChinhSua?id=@item.MaSP" class="btn btn-primary" title="Sửa">Sửa</a>
+                    <a href="/QuanLySanPham/Xoa?id=@item.MaSP" class="btn btn-primary" title="Xóa">Xóa</a>
+
+                </td>
+
+            </tr>
+            }
+            </tbody>
+</table>

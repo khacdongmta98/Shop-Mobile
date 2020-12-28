@@ -1,52 +1,73 @@
 ﻿@model IEnumerable<WebSiteBanHang.Models.SanPham>
 
 
-<div class="col-md-6 men">
-    <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+@*<div class="col-md-6 men">
+    <a href="/SanPham/Xemchitiet?id=@Model.ElementAt(0).MaSP" class="b-link-stripe b-animate-go  thickbox">
         <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/" +Model.ElementAt(0).HinhAnh)" alt="">
-        <div class="b-wrapper">
-            <h3 class="b-animate b-from-top top-in   b-delay03 ">
-                <span>@Html.Raw(Model.ElementAt(0).CauHinh)</span>
-            </h3>
-        </div>
+
     </a>
 </div>
 <div class="col-md-6">
     <div class="col-md1 ">
-        <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+        <a href="/SanPham/Xemchitiet?id=@Model.ElementAt(1).MaSP" class="b-link-stripe b-animate-go  thickbox">
             <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/" +Model.ElementAt(1).HinhAnh)" alt="">
-            <div class="b-wrapper">
-                <h3 class="b-animate b-from-top top-in1   b-delay03 ">
-                    <span>@Html.Raw(Model.ElementAt(1).CauHinh)</span>
-                </h3>
-            </div>
+            
         </a>
 
     </div>
     <div class="col-md2">
         <div class="col-md-6 men1">
-            <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+            <a href="/SanPham/Xemchitiet?id=@Model.ElementAt(2).MaSP" class="b-link-stripe b-animate-go  thickbox">
                 <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/" +Model.ElementAt(2).HinhAnh)" alt="">
-                <div class="b-wrapper">
-                    <h3 class="b-animate b-from-top top-in2   b-delay03 ">
-                        <span>@Html.Raw(Model.ElementAt(2).CauHinh)</span>
-                    </h3>
-                </div>
+
             </a>
 
         </div>
         <div class="col-md-6 men2">
-            <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+            <a href="/SanPham/Xemchitiet?id=@Model.ElementAt(3).MaSP" class="b-link-stripe b-animate-go  thickbox">
                 <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/" +Model.ElementAt(3).HinhAnh)" alt="">
-                <div class="b-wrapper">
-                    <h3 class="b-animate b-from-top top-in2   b-delay03 ">
-                        <span>@Html.Raw(Model.ElementAt(3).CauHinh)</span>
-                    </h3>
-                </div>
+
             </a>
 
         </div>
         <div class="clearfix"> </div>
     </div>
-</div>
+</div>*@
 
+
+@foreach (var item in Model.Take(3))
+{
+    <div class="col-md-4 grid-top">
+        <a href="/SanPham/Xemchitiet?id=@item.MaSP" class="b-link-stripe b-animate-go  thickbox">
+            <img class="img-responsive" src=@Url.Content("~/Content/HinhAnhSP/" + item.HinhAnh) alt="">
+        </a>
+        <div style="text-align:center;">
+        <p><a href="/SanPham/XemChiTiet">@item.TenSP</a></p>
+        <p><a href="#">Giá : @item.DonGia</a></p>
+            <button class="btnThemGioHang" data-masp="@item.MaSP">Thêm vào giỏ hàng</button>
+        </div>
+        
+    </div>
+}
+<div class="clearfix"> </div>
+
+<!----->
+
+<script>
+    $(".btnThemGioHang").click(function () {
+        var maSP = $(this).attr("data-masp");
+
+        $.ajax({
+            type: 'GET',
+            data: {
+                MaSP: maSP,
+
+            },
+            url: '@Url.Action("ThemGioHangAjax","GioHang")',
+            success: function (ketqua) {
+
+                $('#divGioHang').html(ketqua);
+            }
+        });
+    })
+</script>

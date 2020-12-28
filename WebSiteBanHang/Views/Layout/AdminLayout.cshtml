@@ -7,22 +7,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Metro Panel Flat Bootstarp Resposive Website Template| Home :: w3layouts</title>
+    <title>QUẢN TRỊ MOBILE SHOPPING</title>
     <link href="~/Content/Layouts/css/bootstrap.css" rel="stylesheet" type='text/css' />
     <!-- Custom Theme files -->
     <link href="~/Content/Layouts/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom Theme files -->
     <script src="~/Content/Layouts/js/jquery.min.js"></script>
     <link rel="stylesheet" href="~/Content/Layouts/css/font-awesome.css">
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Content/DataTables/css/jquery.dataTables.min.js"></script>
     <!-- Custom Theme files -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Metro Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--webfont-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <script>
+        
 $(document).ready(function(c) {
 	$('.alert-close').on('click', function(c){
 		$('.calender-left').fadeOut('slow', function(c){
@@ -161,9 +163,9 @@ $(document).ready(function(c) {
 </head>
 <body>
     <div class="total-content">
-        <div class="col-md-3 side-bar">
+        <div class="col-md-3 side-bar" style="height:800px;">
             <div class="logo text-center">
-                <a href="#"><img src="images/logo.png" alt="" /></a>
+                <a href="/" style="text-decoration:none;"><img src="~/Content/images/icon.png" style="width:64px;height:64px;" alt="Logo" /><span style="font-size:25px; ">Mobile Shopping</span></a>
             </div>
             <div class="navigation">
                 <h3>Manager</h3>
@@ -180,7 +182,7 @@ $(document).ready(function(c) {
                     <li><a href="@Url.Action("DSSPHetHang", "QuanLyPhieuNhap")">Sản phẩm gần hết</a></li>
                 </ul>
                 <ul>
-                    <li><a href="#"><i class="fat"></i></a></li>
+                    <li><a href="#"><i class="chat"></i></a></li>
                     <li><a href="@Url.Action("ChuaThanhToan", "QuanLyDonHang")">Quản lý đơn hàng</a></li>
                 </ul>
                 <ul>

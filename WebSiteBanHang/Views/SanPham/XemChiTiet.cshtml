@@ -93,7 +93,7 @@ $(window).load(function() {
                     <span class="women1">: CK09</span>
                 </li>
             </ul>*@
-            <a href="#" class="add-cart item_add">Giỏ hàng</a>
+            <a href="#" class="add-cart item_add btnThemGioHang" data-masp="@Model.MaSP">Giỏ hàng</a>
 
         </div>
     </div>
@@ -207,3 +207,21 @@ $(window).load(function() {
         <div class="clearfix"> </div>
     </div>*@
 </div>
+<script>
+    $(".btnThemGioHang").click(function () {
+        var maSP = $(this).attr("data-masp");
+
+        $.ajax({
+            type: 'GET',
+            data: {
+                MaSP: maSP,
+
+            },
+            url: '@Url.Action("ThemGioHangAjax","GioHang")',
+            success: function (ketqua) {
+
+                $('#divGioHang').html(ketqua);
+            }
+        });
+    })
+</script>
