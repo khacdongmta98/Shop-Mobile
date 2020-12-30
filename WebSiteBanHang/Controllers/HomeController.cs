@@ -91,27 +91,31 @@ namespace WebSiteBanHang.Controllers
             ViewBag.ThongBao = "Sai mã Captcha";
             return View();
         }
-        string mail = "<h2>Email của bạn vừa được đăng kí thành Email xác nhận! <br> Nhấp link này để biết thêm chi tiết<a href='http://localhost:53174/'></a></h2>";
+        string mail = "<h2>Email của bạn vừa được đăng kí thành Email xác nhận! <br> Nhấp link này để biết thêm chi tiết<a href='http://localhost:53174/'>Link</a></h2>";
         public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
         {
             SmtpClient smtp = new SmtpClient();
             try
             {
-                //ĐỊA CHỈ SMTP Server
-                smtp.Host = "smtp.gmail.com";
-                //Cổng SMTP
-                smtp.Port = 587;
-                //SMTP yêu cầu mã hóa dữ liệu theo SSL
-                smtp.EnableSsl = true;
-                //UserName và Password của mail
-                smtp.Credentials = new NetworkCredential(FromEmail, PassWord);
-
-                //Tham số lần lượt là địa chỉ người gửi, người nhận, tiêu đề và nội dung thư
-                smtp.Send(FromEmail,ToEmail, Title, Content);
+                // goi email
+                MailMessage mail = new MailMessage();
+                mail.IsBodyHtml = true;
+                mail.To.Add(ToEmail); // Địa chỉ nhận
+                mail.From = new MailAddress(ToEmail); // Địa chửi gửi
+                mail.Subject = Title;  // tiêu đề gửi
+                mail.Body = Content;                 // Nội dung
+                mail.IsBodyHtml = true;
+                smtp.Host = "smtp.gmail.com"; // host gửi của Gmail
+                smtp.Port = 587;               //port của Gmail
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential
+                (FromEmail, PassWord);//Tài khoản password người gửi
+                smtp.EnableSsl = true;   //kích hoạt giao tiếp an toàn SSL
+                smtp.Send(mail);   //Gửi mail đi
             }
             catch (Exception ex)
             {
-                
+                ViewBag.ThongBao = "Thêm thành công nma ko gửi mail";
             }
         }
 

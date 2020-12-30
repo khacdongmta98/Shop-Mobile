@@ -57,31 +57,47 @@ namespace WebSiteBanHang.Controllers
             ddhUpdate.DaThanhToan = ddh.DaThanhToan;
             ddhUpdate.TinhTrangGiaoHang = ddh.TinhTrangGiaoHang;
             db.SaveChanges();
-
             // Lấy ds chi tiết đơn hàng để hiển thị cho người dùng thấy
             var lstChiTietDH = db.ChiTietDonDatHangs.Where(n => n.MaDDH == ddh.MaDDH);
             ViewBag.ListChiTietDH = lstChiTietDH;
-            GuiEmail("Xác nhận đơn hàng", "ducnghia1205@gmail.com", "kiembtcmp@gmail.com", "zewang.help", "Đơn hàng của bạn đã được đặt thành công");
+            if (ddh.TinhTrangGiaoHang == true)
+            {
+                ThanhVien tv = db.ThanhViens.Single(x => x.MaThanhVien == ddh.MaKH);
+                string mail = @"<h2>Đơn hàng của bạn được xác nhận, chúng tôi sẽ chuyển đến cho bạn sớm nhất!!!
+<br> Nhấp link này để biết thêm chi tiết :
+<a href='http://localhost:53174/'>Đường dẫn đến trang web</a></h2>";
+
+                GuiEmail("Email xác nhận", tv.Email, "nguyennam4work@gmail.com", "Namnam1702", mail);
+
+            }
             return View(ddhUpdate);
         }
 
         public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
         {
-            // goi email
-            MailMessage mail = new MailMessage();
-            mail.To.Add(ToEmail); // Địa chỉ nhận
-            mail.From = new MailAddress(ToEmail); // Địa chửi gửi
-            mail.Subject = Title;  // tiêu đề gửi
-            mail.Body = Content;                 // Nội dung
-            mail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com"; // host gửi của Gmail
-            smtp.Port = 587;               //port của Gmail
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new System.Net.NetworkCredential
-            (FromEmail, PassWord);//Tài khoản password người gửi
-            smtp.EnableSsl = true;   //kích hoạt giao tiếp an toàn SSL
-            smtp.Send(mail);   //Gửi mail đi
+            try
+            {
+                // goi email
+                MailMessage mail = new MailMessage();
+                mail.IsBodyHtml = true;
+                mail.To.Add(ToEmail); // Địa chỉ nhận
+                mail.From = new MailAddress(ToEmail); // Địa chửi gửi
+                mail.Subject = Title;  // tiêu đề gửi
+                mail.Body = Content;                 // Nội dung
+                mail.IsBodyHtml = true;
+                smtp.Host = "smtp.gmail.com"; // host gửi của Gmail
+                smtp.Port = 587;               //port của Gmail
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential
+                (FromEmail, PassWord);//Tài khoản password người gửi
+                smtp.EnableSsl = true;   //kích hoạt giao tiếp an toàn SSL
+                smtp.Send(mail);   //Gửi mail đi
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ThongBao = "Thêm thành công nma ko gửi mail";
+            }
         }
 
         protected override void Dispose(bool disposing)

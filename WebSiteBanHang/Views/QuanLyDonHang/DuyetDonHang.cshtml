@@ -13,16 +13,16 @@
 {
     <div class="ChiTietDonHang table">
         @{ IEnumerable<ChiTietDonDatHang> lstChiTietDH = (IEnumerable<ChiTietDonDatHang>)ViewBag.ListChiTietDH;}
-
         <table class="table" id="table">
             @*Thông tin đơn hàng*@
             <tr>
-                <td>Mã đơn hàng: <b style="color:red">@Model.MaDDH @Html.Hidden("MaDDH",Model.MaDDH)</b></td>
-                <td>Mã khách hàng: <b style="color:red">@Model.KhachHang.MaKH</b></td>
+                <td>Mã đơn hàng: <b style="color:red">@Model.MaDDH @Html.Hidden("MaDDH",Model.MaDDH) </b></td>
+                <td>Mã khách hàng: <b style="color:red">@Model.KhachHang.MaKH @Html.Hidden("MaKH", Model.MaKH)</b></td>
                 <td>Tên khách hàng: <b style="color:red">@Model.KhachHang.TenKH</b></td>
                 <td>Ngày đặt: @Model.NgayDat.Value.ToString("dd/MM/yyy")</td>
                 <td>Đã giao: @Html.EditorFor(model=>model.TinhTrangGiaoHang)</td>
                 <td>Đã thanh toán: @Html.EditorFor(model=>model.DaThanhToan)</td>
+                
             </tr>
             @*Phần chi tiết đơn hàng*@
             <tr>
