@@ -62,7 +62,7 @@ namespace WebSiteBanHang.Controllers
             ViewBag.ListChiTietDH = lstChiTietDH;
             if (ddh.TinhTrangGiaoHang == true)
             {
-                ThanhVien tv = db.ThanhViens.Single(x => x.MaThanhVien == ddh.MaKH);
+                KhachHang tv = db.KhachHangs.Single(x => x.MaKH == ddh.MaKH);
                 string mail = @"<h2>Đơn hàng của bạn được xác nhận, chúng tôi sẽ chuyển đến cho bạn sớm nhất!!!
 <br> Nhấp link này để biết thêm chi tiết :
 <a href='http://localhost:53174/'>Đường dẫn đến trang web</a></h2>";

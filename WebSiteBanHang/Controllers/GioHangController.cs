@@ -207,14 +207,14 @@ namespace WebSiteBanHang.Controllers
             KhachHang khang = new KhachHang();
             if(Session["TaiKhoan"] == null)
             {
-                //Thêm kh vào bảng KhachHang ...khi chưa đăng nhập
+                //nếu nó không đăng nhập
                 khang = kh;
                 db.KhachHangs.Add(khang);
                 db.SaveChanges();
             }
             else
             {
-                // Thêm kh bằng session Taikhoan
+                // Thêm nó đăng nhập băng thành viên
                 ThanhVien tv = Session["TaiKhoan"] as ThanhVien;
                 khang.TenKH = tv.HoTen;
                 khang.DiaChi = tv.DiaChi;
