@@ -15,7 +15,7 @@ namespace WebSiteBanHang.Controllers
             ViewBag.TongDoanhThu = ThongKeDoanhThu();
             ViewBag.TongDDH = ThongKeDonHang();
             ViewBag.TongThanhVien = TongThanhVien();
-            ViewBag.TongDoanhThuTheoThang = ThongKeDoanhThuTheoThang(1, 2017);
+            ViewBag.TongDoanhThuTheoThang = ThongKeDoanhThuTheoThang(12, 2020);
             return View();
         }
 
@@ -50,12 +50,12 @@ namespace WebSiteBanHang.Controllers
             return TongTien;
         }
         [HttpPost]
-        public ActionResult Index(FormCollection f)
+        public JsonResult Thongkenam(FormCollection f)
         {
             int Thang = Convert.ToInt32(f["txtThang"].ToString());
             int Nam = Convert.ToInt32(f["txtNam"].ToString());
             decimal? tongtien = ThongKeDoanhThuTheoThang(Thang, Nam);
-            return Content(tongtien.ToString());
+            return Json(tongtien.ToString());
         }
         protected override void Dispose(bool disposing)
         {

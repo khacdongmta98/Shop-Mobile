@@ -16,15 +16,38 @@
 <h2>Tổng số lượng thành viên: <font color="red">@ViewBag.TongThanhVien (thành viên)</font></h2>
 <br />
 
-<h2>Tổng doanh thu tháng 1/2017: <font color="red">@ViewBag.TongDoanhThuTheoThang.ToString("#,##") VNĐ</font></h2>
+<h2>Tổng doanh thu tháng 12/2020: <font color="red">@ViewBag.TongDoanhThuTheoThang.ToString("#,##") VNĐ</font></h2>
 <br />
-@using (Ajax.BeginForm("Index", "ThongKe", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "ThongBao" }))
-{
-    <input type="text" name="txtThang" value="Nhập tháng..." />
-    <input type="text" name="txtNam" value="Nhập năm..." />
-    <input type="submit" value="Thống kê" />
-    <h2 id="ThongBao">Tổng doanh thu: <font color="red"></font></h2>
-}
+<form method="post" action="Thongkenam" enctype="multipart/form-data" >
 
+    <input type="text" name="txtThang" placeholder="Nhập tháng..." />
+    <input type="text" name="txtNam" placeholder="Nhập năm..." />
+    <input type="submit" value="Thống kê" id="thongke"/>
+    <h2 id="ThongBao">Tổng doanh thu: <font color="red"></font></h2>
+
+</form>
+
+
+<script>
+    // this is the id of the form
+    $("#thongke").submit(function (e) {
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+        var form = $(this);
+        var url = form.attr('action');
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(), // serializes the form's elements.
+            success: function (data) {
+                alert(data); // show response from the php script.
+            }
+        });
+
+
+    });
+</script>
 
 <br />
