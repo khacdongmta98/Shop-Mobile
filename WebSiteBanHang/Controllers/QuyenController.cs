@@ -32,5 +32,7 @@ namespace WebSiteBanHang.Controllers
             return RedirectToAction("Index");
         }
 
+
+
     }
 }

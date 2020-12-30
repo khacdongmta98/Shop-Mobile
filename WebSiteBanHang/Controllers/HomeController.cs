@@ -7,6 +7,8 @@ using WebSiteBanHang.Models;
 using CaptchaMvc.HtmlHelpers;
 using CaptchaMvc;
 using System.Web.Security;
+using System.Net.Mail;
+using System.Net;
 
 namespace WebSiteBanHang.Controllers
 {
@@ -21,10 +23,10 @@ namespace WebSiteBanHang.Controllers
             var lstDTM = db.SanPhams.Where(n => n.MaLoaiSP == 1 && n.Moi == 1 && n.DaXoa == false);
             ViewBag.ListDTM = lstDTM;
             // List laptop mới nhất 
-            var lstLTM = db.SanPhams.Where(n => n.MaLoaiSP == 2 && n.Moi == 1 && n.DaXoa == false);
+            var lstLTM = db.SanPhams.Where(n => n.MaLoaiSP == 3 && n.Moi == 1 && n.DaXoa == false);
             ViewBag.ListLTM = lstLTM;
             //List Máy tính bảng mới
-            var lstMTBM = db.SanPhams.Where(n => n.MaLoaiSP == 3 && n.Moi == 1 && n.DaXoa == false);
+            var lstMTBM = db.SanPhams.Where(n => n.MaLoaiSP == 2 && n.Moi == 1 && n.DaXoa == false);
             ViewBag.ListMTBM = lstMTBM;
             return View();
         }
@@ -65,6 +67,8 @@ namespace WebSiteBanHang.Controllers
         [HttpPost]
         public ActionResult DangKy(ThanhVien tv, FormCollection f)
         {
+            //dang ki bth cho thanh khách hàng
+            tv.MaLoaiTV = 2;
             ViewBag.CauHoi = new SelectList(LoadCauHoi());
             //Kiểm tra Captcha hợp lệ
             if (this.IsCaptchaValid("Captcha is not valid"))
@@ -74,6 +78,7 @@ namespace WebSiteBanHang.Controllers
                     ViewBag.ThongBao = "Thêm thành công";
                     db.ThanhViens.Add(tv);
                     db.SaveChanges();
+                    GuiEmail("Email xác nhận", tv.Email, "nguyennam4work@gmail.com", "Namnam1702", mail);
                 }
                 else
                 {
@@ -86,6 +91,30 @@ namespace WebSiteBanHang.Controllers
             ViewBag.ThongBao = "Sai mã Captcha";
             return View();
         }
+        string mail = "<h2>Email của bạn vừa được đăng kí thành Email xác nhận! <br> Nhấp link này để biết thêm chi tiết<a href='http://localhost:53174/'></a></h2>";
+        public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
+        {
+            SmtpClient smtp = new SmtpClient();
+            try
+            {
+                //ĐỊA CHỈ SMTP Server
+                smtp.Host = "smtp.gmail.com";
+                //Cổng SMTP
+                smtp.Port = 587;
+                //SMTP yêu cầu mã hóa dữ liệu theo SSL
+                smtp.EnableSsl = true;
+                //UserName và Password của mail
+                smtp.Credentials = new NetworkCredential(FromEmail, PassWord);
+
+                //Tham số lần lượt là địa chỉ người gửi, người nhận, tiêu đề và nội dung thư
+                smtp.Send(FromEmail,ToEmail, Title, Content);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
         public List<string> LoadCauHoi()
         {
             List<string> lstCauHoi = new List<string>();
@@ -93,6 +122,11 @@ namespace WebSiteBanHang.Controllers
             lstCauHoi.Add("Ca sĩ mà bạn yêu thích?");
             lstCauHoi.Add("Nghề nghiệp của bạn là gì?");
             return lstCauHoi;
+        }
+
+        public ActionResult DangNhap()
+        {
+            return View();
         }
 
         //Xây dựng Action đăng nhập
@@ -129,6 +163,8 @@ namespace WebSiteBanHang.Controllers
                 Quyen = Quyen.Substring(0, Quyen.Length - 1);
                 PhanQuyen(tv.TaiKhoan,Quyen);
                 Session["TaiKhoan"] = tv;
+                Session["LoaiTV"] = tv.MaLoaiTV;
+
                 return Content("<script>window.location.reload()</script>");
             }
             return Content("Tài khoản hoặc mật khẩu không đúng!");
@@ -161,6 +197,9 @@ namespace WebSiteBanHang.Controllers
         {
             //Gán về null
             Session["TaiKhoan"] = null;
+            Session["LoaiTV"] = 0;
+
+
             FormsAuthentication.SignOut();
             return RedirectToAction("Index");
         }

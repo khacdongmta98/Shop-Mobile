@@ -1,7 +1,7 @@
 ﻿@using WebSiteBanHang.Models;
 @model SanPham
 @{
-    ViewBag.Title = "XemChiTiet";
+    ViewBag.Title = "Sản phẩm " + Model.TenSP;
     Layout = "~/Views/Layout/ProductLayout.cshtml";
 }
 
@@ -56,157 +56,300 @@ $(window).load(function() {
             </div>
 
             <h5 class="item_price">@Model.DonGia.Value.ToString("#,##") VNĐ</h5>
-            <p>
+            <p style="font-size:20px;">
                 @Html.Raw(Model.CauHinh)
             </p>
-            @*<div class="available">
-                <ul>
-                    <li>
-                        Color
-                        <select>
-                            <option>Silver</option>
-                            <option>Black</option>
-                            <option>Dark Black</option>
-                            <option>Red</option>
-                        </select>
-                    </li>
-                    <li class="size-in">
-                        Size<select>
-                            <option>Large</option>
-                            <option>Medium</option>
-                            <option>small</option>
-                            <option>Large</option>
-                            <option>small</option>
-                        </select>
-                    </li>
-                    
-                </ul>
-                <div class="clearfix"> </div>
-            </div>
-            <ul class="tag-men">
-                <li>
-                    <span>TAG</span>
-                    <span class="women1">: Women,</span>
-                </li>
-                <li>
-                    <span>SKU</span>
-                    <span class="women1">: CK09</span>
-                </li>
-            </ul>*@
-            <a href="#" class="add-cart item_add btnThemGioHang" data-masp="@Model.MaSP">Giỏ hàng</a>
+            
+            <a href="#" class="add-cart item_add btnThemGioHang" data-masp="@Model.MaSP">Thêm vào giỏ hàng</a>
 
         </div>
     </div>
     
     <div class="clearfix"></div>
     <h3>Thông tin sản phẩm</h3>
-    @Html.Raw(Model.MoTa)
-    <!---->
-    @*<div class="cd-tabs">
-        <nav>
-            <ul class="cd-tabs-navigation">
-                <li><a data-content="fashion" href="#0">Description </a></li>
-                <li><a data-content="cinema" href="#0">Addtional Informatioan</a></li>
-                <li><a data-content="television" href="#0" class="selected ">Reviews (1)</a></li>
-
-            </ul>
-        </nav>
-        <ul class="cd-tabs-content">
-            <li data-content="fashion">
-                <div class="facts">
-                    <p> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined </p>
-                    <ul>
-                        <li>Research</li>
-                        <li>Design and Development</li>
-                        <li>Porting and Optimization</li>
-                        <li>System integration</li>
-                        <li>Verification, Validation and Testing</li>
-                        <li>Maintenance and Support</li>
-                    </ul>
-                </div>
-
-            </li>
-            <li data-content="cinema">
-                <div class="facts1">
-
-                    <div class="color">
-                        <p>Color</p>
-                        <span>Blue, Black, Red</span>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="color">
-                        <p>Size</p>
-                        <span>S, M, L, XL</span>
-                        <div class="clearfix"></div>
-                    </div>
-
-                </div>
-
-            </li>
-            <li data-content="television" class="selected">
-                <div class="comments-top-top">
-                    <div class="top-comment-left">
-                        <img class="img-responsive" src="~/Content/images/co.png" alt="">
-                    </div>
-                    <div class="top-comment-right">
-                        <h6><a href="#">Hendri</a> - September 3, 2014</h6>
-                        <ul class="star-footer">
-                            <li><a href="#"><i> </i></a></li>
-                            <li><a href="#"><i> </i></a></li>
-                            <li><a href="#"><i> </i></a></li>
-                            <li><a href="#"><i> </i></a></li>
-                            <li><a href="#"><i> </i></a></li>
-                        </ul>
-                        <p>Wow nice!</p>
-                    </div>
-                    <div class="clearfix"> </div>
-                    <a class="add-re" href="#">ADD REVIEW</a>
-                </div>
-
-            </li>
-            <div class="clearfix"></div>
-        </ul>
-    </div>
-    <div class=" bottom-product">
-        <div class="col-md-4 bottom-cd simpleCart_shelfItem">
-            <div class="product-at ">
-                <a href="#">
-                    <img class="img-responsive" src="~/Content/images/pi3.jpg" alt="">
-                    <div class="pro-grid">
-                        <span class="buy-in">Buy Now</span>
-                    </div>
-                </a>
-            </div>
-            <p class="tun">It is a long established fact that a reader</p>
-            <a href="#" class="item_add"><p class="number item_price"><i> </i>$500.00</p></a>
-        </div>
-        <div class="col-md-4 bottom-cd simpleCart_shelfItem">
-            <div class="product-at ">
-                <a href="#">
-                    <img class="img-responsive" src="~/Content/images/pi1.jpg" alt="">
-                    <div class="pro-grid">
-                        <span class="buy-in">Buy Now</span>
-                    </div>
-                </a>
-            </div>
-            <p class="tun">It is a long established fact that a reader</p>
-            <a href="#" class="item_add"><p class="number item_price"><i> </i>$500.00</p></a>
-        </div>
-        <div class="col-md-4 bottom-cd simpleCart_shelfItem">
-            <div class="product-at ">
-                <a href="#">
-                    <img class="img-responsive" src="~/Content/images/pi4.jpg" alt="">
-                    <div class="pro-grid">
-                        <span class="buy-in">Buy Now</span>
-                    </div>
-                </a>
-            </div>
-            <p class="tun">It is a long established fact that a reader</p>
-            <a href="#" class="item_add"><p class="number item_price"><i> </i>$500.00</p></a>
-        </div>
-        <div class="clearfix"> </div>
-    </div>*@
+    <p style="font-size:20px;">@Html.Raw(Model.MoTa)</p>
 </div>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            font-size:15px;
+        }
+        .comments-details button.btn.dropdown-toggle,
+        .comments-details .total-comments {
+            font-size: 18px;
+            font-weight: 500;
+            color: #5e5e5e;
+        }
+
+        .comments-details {
+            padding: 15px 15px;
+        }
+
+        .comments .comments .dropdown,
+        .comments .dropup {
+            position: relative;
+        }
+
+        .comments button {
+            background-color: transparent;
+            border: none;
+        }
+
+        .comments .comment-box {
+            width: 100%;
+            float: left;
+            height: 100%;
+            background-color: #FAFAFA;
+            padding: 10px 10px 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .comments .add-comment {
+            background-color: transparent;
+            border: none;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .comments .commenter-pic {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            border-radius: 100%;
+            border: 2px solid #fff;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        .comments .add-comment .commenter-name {
+            width: 100%;
+            padding-left: 75px;
+            position: absolute;
+            top: 20px;
+            left: 0px;
+        }
+
+        .comments .add-comment input {
+            border-top: 0px;
+            border-bottom: 1px solid #ccc;
+            border-left: 0px;
+            border-right: 0px;
+            outline: 0px;
+            box-shadow: none;
+            border-radius: 0;
+            width: 100%;
+            padding: 0;
+            font-weight: normal;
+        }
+
+            .comments .add-comment input:focus {
+                border-color: #03a9f4;
+                border-width: 2px;
+            }
+
+        .comments .add-comment button[type=submit] {
+            background-color: #03a9f4;
+            color: #fff;
+            margin-right: 0px;
+        }
+
+        .comments .add-comment button {
+            background-color: #f5f5f5;
+            margin: 10px 5px;
+            font-size: 14px;
+            text-transform: uppercase;
+            float: right;
+        }
+
+        .comments .commenter-name .comment-time {
+            font-weight: normal;
+            margin-left: 8px;
+            font-size: 15px;
+        }
+
+        .comments p.comment-txt {
+            font-size: 15px;
+            border-bottom: 1px solid #ddd;
+            padding: 0px 0px 15px;
+        }
+
+        .comments .commenter-name {
+            display: inline-block;
+            position: relative;
+            top: -20px;
+            left: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .comments .comment-meta {
+            font-size: 14px;
+            color: #333;
+            padding: 2px 5px 0px;
+            line-height: 20px;
+            float: right;
+        }
+
+        .comments .reply-box {
+            display: none;
+        }
+
+        .comments .replied {
+            background-color: #fff;
+            width: 95%;
+            float: right;
+            margin-top: 15px;
+        }
+
+        /*======Responsive CSS=======*/
+
+        .comments .commenter-pic {
+            width: 40px;
+            height: 40px;
+        }
+
+        .comments .commenter-name a {
+            display: block;
+        }
+
+        .comments .commenter-name .comment-time {
+            display: block;
+            margin-left: 0px;
+        }
+
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="comments">
+                    <div class="comments-details">
+                        <span class="total-comments comments-sort">@ViewBag.comments.Count Bình luận</span>
+                        <span class="dropdown">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Sắp xếp <span class="caret"></span></button>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item">Theo tương tác</a>
+                                <a href="#" class="dropdown-item">Mới nhất</a>
+                            </div>
+                        </span>
+                    </div>
+                    <form action="GuiBinhLuan" enctype="multipart/form-data" method="post">
+                        @if (Session["TaiKhoan"] != null)
+                        {
+                            ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+                            <input name="MaThanhVien" style="display:none;" value="@tv.MaThanhVien" />
+
+                        }
+                        else
+                        {
+                            <input name="MaThanhVien" style="display:none;" value="14" />
+
+                        }
+
+                        <input name="MaSP" style="display:none;" value="@Model.MaSP" />
+                        <input name="ThoiGian" style="display:none;" value="" id="ThoiGian"/>
+
+                        <div class="comment-box add-comment">
+                            <span class="commenter-pic">
+                                <img src="~/Content/images/Anonymous.jpg" class="img-fluid">
+                            </span>
+                            <span class="commenter-name">
+                                <input type="text" placeholder="Nội dung bình luận" name="NoiDungBL">
+                                <button type="submit" class="btn btn-default">Gửi</button>
+                                <button type="cancel" class="btn btn-default">Hủy</button>
+                            </span>
+                        </div>
+                    </form>
+                    @* //////////// *@
+
+                    @foreach (var item in ViewBag.comments)
+                                {
+                        if (item.TraLoiBinhLuan == 0)
+                        {
+
+
+                        <div class="comment-box">
+                            <span class="commenter-pic">
+                                <img src="~/Content/images/Anonymous.jpg" class="img-fluid">
+                            </span>
+                            <span class="commenter-name" style="padding-top:12px;">
+                                <b>@item.Ten</b> <span class="comment-time">@item.ThoiGian</span>
+                            </span>
+                            <p class="comment-txt more">@item.NoiDungBL</p>
+                            <div class="comment-meta">
+                                <button onclick="ToggleRepBL(this)" data-bl="@item.MaBL" class="comment-reply reply-popup"><i class="fa fa-reply-all" aria-hidden="true"></i> Trả lời</button>
+                            </div>
+
+                            @foreach (var item2 in ViewBag.comments)
+                            {
+                                if (item.MaBL == item2.TraLoiBinhLuan)
+                                {
+                                <div class="comment-box replied">
+                                    <span class="commenter-pic">
+                                        <img src="~/Content/images/Anonymous.jpg" class="img-fluid">
+                                    </span>
+                                    <span class="commenter-name" style="padding-top:12px;">
+                                        <b>@item2.Ten</b> <span class="comment-time">@item2.ThoiGian</span>
+                                    </span>
+                                    <p class="comment-txt more">@item2.NoiDungBL</p>
+                                </div>
+                                }
+                            }
+                            <form action="GuiBinhLuan" enctype="multipart/form-data" method="post">
+                                @if (Session["TaiKhoan"] != null)
+                                {
+                                    ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+                                    <input name="MaThanhVien" style="display:none;" value="@tv.MaThanhVien" />
+
+                                }
+                                else
+                                {
+                                    <input name="MaThanhVien" style="display:none;" value="14" />
+
+                                }
+                                <input name="MaSP" style="display:none;" value="@Model.MaSP" />
+                                <input name="TraLoiBinhLuan" style="display:none;" value="@item.MaBL" />
+                                <div class="comment-box add-comment reply-box" data-bl="@item.MaBL" id="@item.MaBL">
+                                    <span class="commenter-pic">
+                                        <img src="~/Content/images/Anonymous.jpg" class="img-fluid">
+                                    </span>
+                                    <span class="commenter-name">
+                                        <input type="text" placeholder="Nội dung bình luận" name="NoiDungBL">
+                                        <button type="submit" class="btn btn-default">Gửi</button>
+                                        <button type="cancel" onclick="ToggleRepBL(this)" class="btn btn-default reply-popup" data-bl="@item.MaBL">Hủy</button>
+                                    </span>
+                                </div>
+                             </form>
+</div>
+
+                        }
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+// Reply box popup JS
+
+function ToggleRepBL(d) {
+    var data = d.getAttribute("data-bl");
+    $("#"+data).toggle();
+
+}
+</script>
+
 <script>
     $(".btnThemGioHang").click(function () {
         var maSP = $(this).attr("data-masp");

@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Products :: w3layouts</title>
+    <title>@ViewBag.Title</title>
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="~/Content/js/jquery.min.js"></script>
@@ -17,8 +17,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--fonts-->
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
@@ -32,6 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="~/Content/js/simpleCart.min.js"> </script>
 </head>
 <body>
+
     <!--header-->
     <div class="header">
         @Html.Partial("~/Views/Layout/HeaderTopPartial.cshtml")
@@ -41,18 +41,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="logo">
                     <a href="/" style="text-decoration:none;"><img src="~/Content/images/icon.png" height="50" width="50" alt="Trang chủ"> <span style="font-size:20px;">Mobile Shopping</span></a>
                 </div>
-                @Html.Action("MenuPartial","Home")
+                @Html.Action("MenuPartial", "Home")
 
                 <div class="clearfix"> </div>
             </div>
         </div>
 
     </div>
+    @{
+        string link;
+        if (ViewBag.MaLoaiSP == null)
+        {
+            link = "/SanPham/SanPham?gia=";
+        }
+        else
+        {
+            if (@ViewBag.MaNSX == null)
+            {
+                link = "/SanPham/SanPham?MaLoaiSP=" + ViewBag.MaLoaiSP + "&gia=";
+
+            }
+            else
+            {
+                link = "/SanPham/SanPham?MaLoaiSP=" + ViewBag.MaLoaiSP + "&MaNSX=" + ViewBag.MaNSX + "&gia=";
 
 
+            }
+        }
+    }
     <!--content-->
     <!---->
-    <div class="product">
+     <div class="product">
         <div class="container">
             <div class="col-md-3 product-price">
 
@@ -64,25 +83,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li class="item1">
                             <a href="#">Hãng </a>
                             <ul class="cute">
-                                <li class="subitem1"><a href="#">Dell </a></li>
-                                <li class="subitem2"><a href="#">SamSung</a></li>
-                                <li class="subitem3"><a href="#">Apple </a></li>
+                                <li class="subitem1"><a href="/SanPham/SanPham?MaNSX=1">Acer </a></li>
+                                <li class="subitem2"><a href="/SanPham/SanPham?MaNSX=2">Apple</a></li>
+                                <li class="subitem3"><a href="/SanPham/SanPham?MaNSX=3">Asus </a></li>
+                                <li class="subitem1"><a href="/SanPham/SanPham?MaNSX=4">Blackberry </a></li>
+                                <li class="subitem2"><a href="/SanPham/SanPham?MaNSX=5">Dell</a></li>
+                                <li class="subitem3"><a href="/SanPham/SanPham?MaNSX=6">Hp </a></li>
+                                <li class="subitem1"><a href="/SanPham/SanPham?MaNSX=7">HTC </a></li>
+                                <li class="subitem2"><a href="/SanPham/SanPham?MaNSX=8">LG</a></li>
+                                <li class="subitem3"><a href="/SanPham/SanPham?MaNSX=9">Nokia </a></li>
+                                <li class="subitem3"><a href="/SanPham/SanPham?MaNSX=10">Sony </a></li>
+                                <li class="subitem1"><a href="/SanPham/SanPham?MaNSX=11">Samsung </a></li>
+                                <li class="subitem2"><a href="/SanPham/SanPham?MaNSX=12">Toshiba</a></li>
+                                <li class="subitem3"><a href="/SanPham/SanPham?MaNSX=13">Cubot </a></li>
                             </ul>
                         </li>
                         <li class="item2">
                             <a href="#">Giá </a>
                             <ul class="cute">
-                                <li class="subitem1"><a href="#">Dưới 1 triệu</a></li>
-                                <li class="subitem2"><a href="#">Từ 1 -> 5 triệu </a></li>
-                                <li class="subitem3"><a href="#">Trên 5 triệu </a></li>
-                            </ul>
-                        </li>
-                        <li class="item3">
-                            <a href="#">Cấu Hình</a>
-                            <ul class="cute">
-                                <li class="subitem1"><a href="#">RAM </a></li>
-                                <li class="subitem2"><a href="#">CPU </a></li>
-                                <li class="subitem3"><a href="#">MÀN HÌNH</a></li>
+                                <li class="subitem1"><a href="@link 1">Dưới 1 triệu</a></li>
+                                <li class="subitem2"><a href="@link 2">Từ 1 -> 5 triệu </a></li>
+                                <li class="subitem3"><a href="@link 3">Trên 5 triệu </a></li>
                             </ul>
                         </li>
                         
@@ -126,251 +147,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="of-left-in">
                         <h3 class="best">Sản phẩm bán chạy nhất</h3>
                     </div>
-                    <div class="product-go">
-                        <div class="fashion-grid">
-                            <a href="#"><img class="img-responsive " src="https://cdn.tgdd.vn/Files/2018/06/19/1096304/top-3-chup-hinh-dep-nhat-hien-nay-13.jpg" alt=""></a>
+                    @{
+                        if (ViewBag.spbanchay != null) {
+                            foreach (var item in ViewBag.spbanchay)
+                            {
+                        <div class="product-go">
+                            <div class="fashion-grid">
+                                <a href="/SanPham/XemChiTiet?id=@item.MaSP"><img class="img-responsive " src="~/Content/HinhAnhSP/@item.HinhAnh" alt="Hinh anh san pham"></a>
 
+                            </div>
+                            <div class="fashion-grid1">
+                                <h6 class="best2">
+                                    <a href="/SanPham/XemChiTiet?id=@item.MaSP">
+                                        @item.TenSP
+
+                                    </a>
+                                </h6>
+
+                                <span class="price-in1">Giá : @item.DonGia</span>
+                            </div>
+
+                            <div class="clearfix"> </div>
                         </div>
-                        <div class="fashion-grid1">
-                            <h6 class="best2">
-                                <a href="#">
-                                    ĐIỆN THOẠI IPHONE 12 PRO MAX
+                        } } }
 
-                                </a>
-                            </h6>
 
-                            <span class="price-in1">Giá : 25,600,000</span>
-                        </div>
-
-                        <div class="clearfix"> </div>
-                    </div>
-                    <div class="product-go">
-                        <div class="fashion-grid">
-                            <a href="#"><img class="img-responsive " src="https://cdn.tgdd.vn/Files/2018/06/19/1096304/top-3-chup-hinh-dep-nhat-hien-nay-13.jpg" alt=""></a>
-
-                        </div>
-                        <div class="fashion-grid1">
-                            <h6 class="best2">
-                                <a href="#">
-                                    ĐIỆN THOẠI IPHONE 12 PRO MAX
-                                </a>
-                            </h6>
-
-                            <span class="price-in1"> Giá : 25,600,000</span>
-                        </div>
-
-                        <div class="clearfix"> </div>
-                    </div>
 
                 </div>
                 
             </div>
             @RenderBody()
-            @*<div class="col-md-9 product-price1">
-                <div class="col-md-5 single-top">
-                    <div class="flexslider">
-                        <ul class="slides">
-                            <li data-thumb="images/si.jpg">
-                                <img src="images/si.jpg" />
-                            </li>
-                            <li data-thumb="images/si1.jpg">
-                                <img src="images/si1.jpg" />
-                            </li>
-                            <li data-thumb="images/si2.jpg">
-                                <img src="images/si2.jpg" />
-                            </li>
-                            <li data-thumb="images/si.jpg">
-                                <img src="images/si.jpg" />
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- FlexSlider -->
-                    <script defer src="js/jquery.flexslider.js"></script>
-                    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-
-                    <script>
-// Can also be used with $(document).ready()
-$(window).load(function() {
-  $('.flexslider').flexslider({
-    animation: "slide",
-    controlNav: "thumbnails"
-  });
-});
-                    </script>
-                </div>
-                <div class="col-md-7 single-top-in simpleCart_shelfItem">
-                    <div class="single-para ">
-                        <h4>Lorem Ipsum</h4>
-                        <div class="star-on">
-                            <ul class="star-footer">
-                                <li><a href="#"><i> </i></a></li>
-                                <li><a href="#"><i> </i></a></li>
-                                <li><a href="#"><i> </i></a></li>
-                                <li><a href="#"><i> </i></a></li>
-                                <li><a href="#"><i> </i></a></li>
-                            </ul>
-                            <div class="review">
-                                <a href="#"> 1 customer review </a>
-
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-
-                        <h5 class="item_price">$ 95.00</h5>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                            diam nonummy nibh euismod tincidunt ut laoreet dolore
-                            magna aliquam erat
-                        </p>
-                        <div class="available">
-                            <ul>
-                                <li>
-                                    Color
-                                    <select>
-                                        <option>Silver</option>
-                                        <option>Black</option>
-                                        <option>Dark Black</option>
-                                        <option>Red</option>
-                                    </select>
-                                </li>
-                                <li class="size-in">
-                                    Size<select>
-                                        <option>Large</option>
-                                        <option>Medium</option>
-                                        <option>small</option>
-                                        <option>Large</option>
-                                        <option>small</option>
-                                    </select>
-                                </li>
-                                <div class="clearfix"> </div>
-                            </ul>
-                        </div>
-                        <ul class="tag-men">
-                            <li>
-                                <span>TAG</span>
-                                <span class="women1">: Women,</span>
-                            </li>
-                            <li>
-                                <span>SKU</span>
-                                <span class="women1">: CK09</span>
-                            </li>
-                        </ul>
-                        <a href="#" class="add-cart item_add">ADD TO CART</a>
-
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
-                <!---->
-                <div class="cd-tabs">
-                    <nav>
-                        <ul class="cd-tabs-navigation">
-                            <li><a data-content="fashion" href="#0">Description </a></li>
-                            <li><a data-content="cinema" href="#0">Addtional Informatioan</a></li>
-                            <li><a data-content="television" href="#0" class="selected ">Reviews (1)</a></li>
-
-                        </ul>
-                    </nav>
-                    <ul class="cd-tabs-content">
-                        <li data-content="fashion">
-                            <div class="facts">
-                                <p> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined </p>
-                                <ul>
-                                    <li>Research</li>
-                                    <li>Design and Development</li>
-                                    <li>Porting and Optimization</li>
-                                    <li>System integration</li>
-                                    <li>Verification, Validation and Testing</li>
-                                    <li>Maintenance and Support</li>
-                                </ul>
-                            </div>
-
-                        </li>
-                        <li data-content="cinema">
-                            <div class="facts1">
-
-                                <div class="color">
-                                    <p>Color</p>
-                                    <span>Blue, Black, Red</span>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="color">
-                                    <p>Size</p>
-                                    <span>S, M, L, XL</span>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                            </div>
-
-                        </li>
-                        <li data-content="television" class="selected">
-                            <div class="comments-top-top">
-                                <div class="top-comment-left">
-                                    <img class="img-responsive" src="images/co.png" alt="">
-                                </div>
-                                <div class="top-comment-right">
-                                    <h6><a href="#">Hendri</a> - September 3, 2014</h6>
-                                    <ul class="star-footer">
-                                        <li><a href="#"><i> </i></a></li>
-                                        <li><a href="#"><i> </i></a></li>
-                                        <li><a href="#"><i> </i></a></li>
-                                        <li><a href="#"><i> </i></a></li>
-                                        <li><a href="#"><i> </i></a></li>
-                                    </ul>
-                                    <p>Wow nice!</p>
-                                </div>
-                                <div class="clearfix"> </div>
-                                <a class="add-re" href="#">ADD REVIEW</a>
-                            </div>
-
-                        </li>
-                        <div class="clearfix"></div>
-                    </ul>
-                </div>
-                <div class=" bottom-product">
-                    <div class="col-md-4 bottom-cd simpleCart_shelfItem">
-                        <div class="product-at ">
-                            <a href="#">
-                                <img class="img-responsive" src="images/pi3.jpg" alt="">
-                                <div class="pro-grid">
-                                    <span class="buy-in">Buy Now</span>
-                                </div>
-                            </a>
-                        </div>
-                        <p class="tun">It is a long established fact that a reader</p>
-                        <a href="#" class="item_add"><p class="number item_price"><i> </i>$500.00</p></a>
-                    </div>
-                    <div class="col-md-4 bottom-cd simpleCart_shelfItem">
-                        <div class="product-at ">
-                            <a href="#">
-                                <img class="img-responsive" src="images/pi1.jpg" alt="">
-                                <div class="pro-grid">
-                                    <span class="buy-in">Buy Now</span>
-                                </div>
-                            </a>
-                        </div>
-                        <p class="tun">It is a long established fact that a reader</p>
-                        <a href="#" class="item_add"><p class="number item_price"><i> </i>$500.00</p></a>
-                    </div>
-                    <div class="col-md-4 bottom-cd simpleCart_shelfItem">
-                        <div class="product-at ">
-                            <a href="#">
-                                <img class="img-responsive" src="images/pi4.jpg" alt="">
-                                <div class="pro-grid">
-                                    <span class="buy-in">Buy Now</span>
-                                </div>
-                            </a>
-                        </div>
-                        <p class="tun">It is a long established fact that a reader</p>
-                        <a href="#" class="item_add"><p class="number item_price"><i> </i>$500.00</p></a>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-            </div>*@
 
             <div class="clearfix"> </div>
         </div>
     </div>
     <!--//content-->
+
     <div class="footer">
         <div class="container">
             <div class="footer-top-at">

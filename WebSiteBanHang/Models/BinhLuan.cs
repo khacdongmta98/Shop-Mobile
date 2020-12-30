@@ -17,6 +17,10 @@ namespace WebSiteBanHang.Models
         public int? MaThanhVien { get; set; }
 
         public int? MaSP { get; set; }
+        public DateTime? ThoiGian { get; set; }
+        public int? TraLoiBinhLuan { get; set; }
+        public string Ten { get; set; }
+
 
         public virtual SanPham SanPham { get; set; }
 
